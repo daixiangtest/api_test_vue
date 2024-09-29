@@ -1,0 +1,61 @@
+.login_page{
+    background-color: aliceblue;
+    background-image: url('@/assets/images/login_bg.svg');
+    height: 100vh;
+    min-height: 550px;
+    background-size: cover;
+
+    .login_box{
+        height: 94%;
+        width: 96%;
+        background-color: rgba(235, 244, 248,0.8);
+        border-radius: 10px;
+        position: relative;
+        left: 2%;
+        top: 3%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .left_box{
+            width: 800px;
+            .login_img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .right_box{
+            width: 450px;
+            height: 400px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #2b0505;
+
+            .header{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100px;
+                .logo{
+                    img{
+                        filter: opacity(90%);
+                        width: 100px;
+                        height: 90px;
+                    }
+                }
+                .title{
+                    color: #000;
+                    font-size: 28px;
+                    font-weight: bold;
+                }
+            }
+            .login_form{
+                padding: 30px;
+                .el-form-item{
+                    margin-bottom: 40px;
+                }
+
+            }
+        }
+    }
+}
+    

@@ -1,0 +1,49 @@
+.pro_page{
+    background-color: aliceblue;
+    background-image: url('@/assets/images/login_bg.svg');
+    height: 100vh;
+    min-height: 550px;
+    background-size: cover;
+
+    .pro_box{
+        height: 94%;
+        width: 96%;
+        background-color: rgba(235, 244, 248,0.8);
+        border-radius: 10px;
+        position: relative;
+        left: 2%;
+        top: 3%;
+        .welecome{
+            color: #000;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            height: 80px;
+            line-height: 80px;
+            .el-button{
+                float: right;
+                margin: 10px,30px;
+            }
+        }
+        .pro_list{
+            .pro{
+                height: 600px;
+                background: #d9eadb;
+                text-align: center;
+                img{
+                    height: 400px;
+                }
+                .name{
+                    color: #000;
+                    height: 80px;
+                    background: #81ec73;
+                    font: bold 28px/80px '微软雅黑';
+                }
+                .btn_box{
+                    height: 120px;
+                    margin-top: 20px;
+                }
+            }
+        }
+    }
+}
