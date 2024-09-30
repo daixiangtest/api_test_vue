@@ -11,7 +11,8 @@
                 <el-carousel-item v-for="(item,index) in pro_list" :key="index">
                     <!-- 项目卡片 -->
                      <div class="pro">
-                        <img src="../../assets/images/pro01.png">
+                        <!-- <img src='../../assets/images/pro02.png'> -->
+                        <img :src="imageUrls.urls[index]">
                         <div class="name">
                           {{item.name}}
                         </div>
@@ -32,7 +33,7 @@
 
 
 <script setup>
-import {ref} from 'vue'
+import {ref,reactive} from 'vue'
 import api from '../../api/index'
 
 let pro_list=ref([])
@@ -43,6 +44,19 @@ async function getProList() {
   } 
 }
 getProList()
+
+const imageUrls=reactive(
+        {
+            urls:[
+            require('@/assets/images/pro01.png'),  
+            require('@/assets/images/pro02.png'),  
+            require('@/assets/images/pro03.png'),
+            require('@/assets/images/pro04.png'),
+            require('@/assets/images/pro05.png'),
+            require('@/assets/images/pro06.png')
+            ]  
+        }
+    )
 
 
 
