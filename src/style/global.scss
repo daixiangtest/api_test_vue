@@ -1,4 +1,20 @@
 /* // 全局的样式定义 */
-body{
+
+
+html,
+body,
+#app
+{
     margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+// 全局设置滚动条样式
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(48, 48, 49);
 }

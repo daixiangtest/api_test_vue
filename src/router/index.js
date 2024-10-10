@@ -27,6 +27,12 @@ const routes = [
     
     component: () => import('../views/home/HomeView.vue')
   },
+  {
+    path: '/project/testEnv',
+    name: 'testEnv',
+    
+    component: () => import('../views/testEnv/TestEnvView.vue')
+  },
 ]
 
 const router = createRouter({

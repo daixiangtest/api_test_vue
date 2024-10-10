@@ -7,7 +7,8 @@ export const UserStore=defineStore('userStore',
         state: () => {
             return {
                 token:"",
-                username:""
+                username:"",
+                iscollapse:false
             }
 
         },
