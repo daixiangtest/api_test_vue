@@ -9,7 +9,7 @@
             </el-icon>
             <!-- 时间展示 -->
              <div class="time_info">
-                2024年10月10日 19:08:38
+                {{ntime}}
              </div>
              <!-- 环境选择 -->
              <el-select v-model="env" placeholder="选择环境" style="width: 240px">
@@ -39,6 +39,36 @@ function switchCollap(){
 }
 
 let env=ref()
+
+// 定义时间
+function getTime(){
+    let now_time=new Date()
+    let y=now_time.getFullYear()
+    let M=now_time.getMonth()+1
+    let d=now_time.getDate()
+    let h=now_time.getHours()
+    let m=now_time.getMinutes()
+    let s=now_time.getSeconds()
+    if (h<10){
+        return '0'+h
+    }
+    if (m<10){
+        return '0'+m
+    }
+    if (s<10){
+        return '0'+s
+    }
+    return `${y}年${M}月${d}日 ${h}:${m}:${s}`
+}
+var ntime=ref()
+// 定时任务执行获取时间
+setInterval(() => {
+    ntime.value=getTime()
+},1000)
+
+
+
+
 </script>
 
 <style scoped lang="scss">
