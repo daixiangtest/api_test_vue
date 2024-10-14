@@ -50,7 +50,10 @@ axios.interceptors.response.use(function (response) {
     loginApi(params){
       return axios.post('/api/users/login/',params)
     },
-
+    // 验证token是否有效
+    verifyApi(params){
+      return axios.post('/api/users/token/verify/',params)
+    },
     // 查询项目列表
     getProListApi(){
       return axios.get('/api/testPro/projects/')

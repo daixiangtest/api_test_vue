@@ -8,7 +8,13 @@
         <el-header>
           <HeaderMenu></HeaderMenu>  
         </el-header>
-        <el-main>Main</el-main>
+        <el-main>
+          <!-- 标签栏 -->
+          <TabName></TabName>
+          
+          <!-- 主内容 -->
+           <router-view></router-view>
+        </el-main>
         <el-footer>
           <FooterMenu></FooterMenu>
         </el-footer>
@@ -20,6 +26,7 @@
 import LeftMenu from './components/LeftMenu.vue';
 import FooterMenu from './components/FooterMenu.vue';
 import HeaderMenu from './components/HeaderMenu.vue';
+import TabName from './components/TabName.vue';
 import {UserStore} from '@/store/modoles/userStore'
     // 控制菜单收放
     const us=UserStore()
@@ -40,6 +47,9 @@ import {UserStore} from '@/store/modoles/userStore'
   .el-footer{
     border-top: solid 1px #615f5f;
     height: 30px
+  }
+  .el-main{
+    padding: 0px 0px;
   }
 }
 

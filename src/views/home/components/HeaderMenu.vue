@@ -23,8 +23,18 @@
         <div class="center_box">自动化测试平台</div>
         <!-- 右侧布局 -->
         <div class="right_box">
-            <el-icon size="30"><Rank /></el-icon>
-            <img src="@/assets/images/avatar02.png">
+            <el-icon size="30" @click="screenFull.toggle()"><Rank /></el-icon>
+            <el-dropdown>
+                <span class="el-dropdown-link">
+                    <img src="@/assets/images/avatar02.png">
+                </span>
+                <template #dropdown>
+                <el-dropdown-menu>
+                    <el-dropdown-item icon="Menu" @click="checkoutPro()">选择项目</el-dropdown-item>
+                    <el-dropdown-item icon="SwitchButton" @click="loginOut()">退出登录</el-dropdown-item>
+                </el-dropdown-menu>
+                </template>
+            </el-dropdown>
         </div>
     </div>
 </template>
@@ -32,6 +42,10 @@
 <script setup>
 import {UserStore} from '@/store/modoles/userStore'
 import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+import { ElMessage } from 'element-plus'
+// 页面全屏展示的库(需要安装screenfull)
+import screenFull from 'screenfull'
 const us=UserStore()
 // 控制底部顶部菜单栏图标切换
 function switchCollap(){
@@ -66,8 +80,21 @@ setInterval(() => {
     ntime.value=getTime()
 },1000)
 
+// 切换至项目页面
+const router=useRouter()
+function checkoutPro(){
+    router.push({name:"project"})
+}
 
-
+// 退出返回登录页面
+function loginOut(){
+    router.push({name:"login"})
+    ElMessage({
+                    message: '退出登录成功',
+                    type: 'success',
+                })
+    us.token=''
+}
 
 </script>
 
@@ -103,9 +130,9 @@ setInterval(() => {
     }
     // 中间样式
     .center_box{
-        background: url(@/assets/images/header-center-bg.png);
-        background-repeat: no-repeat;
+        background-image: url(@/assets/images/header-center-bg.png);
         background-size: cover;
+        background-repeat: no-repeat;
         height: 37px;
         width: 500px;
         line-height: 45px;
@@ -121,11 +148,17 @@ setInterval(() => {
         display: flex;
         align-items: center;
         justify-content: right;
-        img{
-            padding-left: 10px ;
+        .el-dropdown-link{
+            // padding-left: 10px ;
+            width: 40px;
+            height: 40px;
+            outline: none;
+            img{
             width: 40px;
             height: 40px;
         }
+        }
+        
     }
 }
 
