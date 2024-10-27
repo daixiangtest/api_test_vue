@@ -12,10 +12,8 @@
                 {{ntime}}
              </div>
              <!-- 环境选择 -->
-             <el-select v-model="env" placeholder="选择环境" style="width: 240px">
-                <el-option label="环境1" value="1"/>
-                <el-option label="环境2" value="2"/>
-                <el-option label="环境3" value="3"/>
+             <el-select v-model="env1" placeholder="选择环境" style="width: 240px">
+                <el-option v-for="env in envList" :label="env.name" :value="env.id" :key="env.id"/>
             </el-select>
 
         </div>
@@ -44,15 +42,23 @@ import {UserStore} from '@/store/modoles/userStore'
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
 import { ElMessage } from 'element-plus'
+import {ProjectStore} from '@/store/modoles/proStore'
+import { storeToRefs } from 'pinia'
+
 // 页面全屏展示的库(需要安装screenfull)
 import screenFull from 'screenfull'
 const us=UserStore()
-// 控制底部顶部菜单栏图标切换
+// 控制顶部菜单栏图标的收放功能
 function switchCollap(){
     us.iscollapse= !us.iscollapse
 }
+// 控制选中的环境变量做全局存储
+var proStore=ProjectStore()
+// 将全局对象转化为ref的响应式对象
+var proStoreRef=storeToRefs(proStore)
+var envList=proStoreRef.env_list
+var env1=proStoreRef.env
 
-let env=ref()
 
 // 定义时间
 function getTime(){

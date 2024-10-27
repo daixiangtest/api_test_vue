@@ -18,3 +18,11 @@ body,
 ::-webkit-scrollbar-thumb{
     background-color: rgb(48, 48, 49);
 }
+
+// 全局卡片组件样式
+.card{
+    border: solid 1px #615f5f;
+    margin: 2px;
+    border-radius: 5px;
+    overflow: scroll;
+}

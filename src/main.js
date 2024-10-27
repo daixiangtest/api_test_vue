@@ -19,6 +19,28 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
   }
 // 注册ElementPlus 国际化为中文
+
+// 解决解决element-plus 报错 ResizeObserver loop limit exceeded
+// --------main.js---------------------
+const debounce = (fn, delay) => {
+  let timer = null;
+  return function () {
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      fn.apply(context, args);
+    }, delay);
+  }
+}
+const _ResizeObserver = window.ResizeObserver;
+window.ResizeObserver = class ResizeObserver extends _ResizeObserver{
+  constructor(callback) {
+    callback = debounce(callback, 16);
+    super(callback);
+  }
+}
+
 app.use(ElementPlus, {
     locale: zhCn,
   })

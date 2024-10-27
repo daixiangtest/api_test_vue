@@ -28,8 +28,12 @@ import FooterMenu from './components/FooterMenu.vue';
 import HeaderMenu from './components/HeaderMenu.vue';
 import TabName from './components/TabName.vue';
 import {UserStore} from '@/store/modoles/userStore'
+import {ProjectStore} from '@/store/modoles/proStore' 
     // 控制菜单收放
     const us=UserStore()
+    const pstore=ProjectStore()
+    // 获取项目接口列表
+    pstore.getInterFaces()
 
 </script>
 

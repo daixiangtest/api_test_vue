@@ -77,5 +77,67 @@ axios.interceptors.response.use(function (response) {
     // 删除项目
     delProApi(id){
       return axios.delete(`/api/testPro/projects/${id}/`)
+    },
+    // 获取项目的环境
+    getTestEnvList(pro_id){
+      return axios.get('/api/testPro/envs/',
+        {params:{project:pro_id}})
+    },
+    // 添加测试环境
+    addTestEnv(body){
+      return axios.post('/api/testPro/envs/',body)
+    },
+    // 修改测试环境
+    updateTestEnv(env_id,body){
+      return axios.patch(`/api/testPro/envs/${env_id}/`,body)
+    },
+    // 删除测试环境
+    delTestEnv(env_id){
+      return axios.delete(`/api/testPro/envs/${env_id}/`)
+    },
+    // 获取测试环境详情
+    getTestEnv(env_id){
+      return axios.get(`/api/testPro/envs/${env_id}`)
+    },
+    // 运行单条接口用例
+    runInterFaceCase(body){
+      return axios.post('/api/TestInterFace/cases/run/',body)
+    },
+    // 新增接口
+    addInterFace(body){
+      return axios.post('/api/TestInterFace/interfaces/',body)
+    },
+    // 编辑接口
+    updateInterFace(interfaces_id,body){
+      return axios.patch(`/api/TestInterFace/interfaces/${interfaces_id}/`,body)
+    },
+    // 删除接口
+    delInterFace(interfaces_id){
+      return axios.delete(`/api/TestInterFace/interfaces/${interfaces_id}/`)
+    },
+    // 获取接口列表
+    getInterFaces(pro_id){
+      return axios.get('/api/TestInterFace/interfaces/',{
+        params:{
+          project:pro_id
+        }
+      })
+    },
+    // 获取测试用例的详情
+    getInterFacesCase(case_id){
+      return axios.get(`/api/TestInterFace/cases/${case_id}/`)
+    },
+    // 添加测试用例
+    addInterFaceCase(body){
+      return axios.post('/api/TestInterFace/cases/',body)
+    },
+    // 修改测试用例
+    updateInterFaceCase(interfaces_id,body){
+      return axios.patch(`/api/TestInterFace/cases/${interfaces_id}/`,body)
+    },
+    // 删除测试用例
+    delInterFaceCase(case_id){
+      return axios.delete(`/api/TestInterFace/cases/${case_id}/`)
     }
+
   }
