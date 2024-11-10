@@ -39,10 +39,18 @@
         <div class="script_code">
             <div class="edido"><EditorCopmponts v-model="caseData.setup_script"  lang="python" height="225px"></EditorCopmponts></div>
             <div class="card mod">
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
+                <div class="add_code">
+                    <el-button @click='addSetupScript("func")' plain size="small" type="success" style="margin-bottom: 8px;">调用全局工具函数</el-button>
+                </div>
+                <div class="add_code">
+                    <el-button @click='addSetupScript("global")' plain size="small" type="success" style="margin-bottom: 8px;">设置全局变量</el-button>
+                </div>
+                <div class="add_code">
+                    <el-button @click='addSetupScript("env")' plain size="small" type="success" style="margin-bottom: 8px;">设置局部变量</el-button>
+                </div>
+                <div class="add_code">
+                    <el-button @click='addSetupScript("sql")' plain size="small" type="success" style="margin-bottom: 8px;">执行sql查询</el-button>
+                </div>
             </div>
         </div>
       </el-collapse-item>
@@ -97,18 +105,38 @@
             <div class="script_code">
             <div class="edido"><EditorCopmponts v-model="caseData.teardown_script"  lang="python" height="225px"></EditorCopmponts></div>
             <div class="card mod" style="overflow: auto;">
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
-                <div><el-button type="success" plain size="small" style="margin-bottom: 10px;">Success</el-button></div>
+                <div class="add_code">
+							<el-button @click="addTearDownCodeMod('func')" plain size="small" type="success" style="margin-bottom: 5px;">调用全局工具函数</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('getBody')" plain size="small" type="success" style="margin-bottom: 5px;">获取响应体</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('global')" plain size="small" type="success" style="margin-bottom: 5px;">设置全局变量</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('env')" plain size="small" type="success" style="margin-bottom: 5px;">设置局部变量</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('sql')" plain size="small" type="success" style="margin-bottom: 5px;">执行sql查询</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('JSextract')" plain
+								size="small" type="success" style="margin-bottom: 5px;">Jsonpath提取数据</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('REextract')" plain size="small" type="success" style="margin-bottom: 5px;">正则提取数据</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('http')" plain size="small" type="success" style="margin-bottom: 5px;">HTTP状态码断言</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('eq')" plain size="small" type="success" style="margin-bottom: 5px;">断言相对</el-button>
+						</div>
+						<div class="add_code">
+							<el-button @click="addTearDownCodeMod('contain')" plain size="small" type="success" style="margin-bottom: 5px;">断言包含</el-button>
+						</div>
+                <!-- <div><el-button type="info" plain size="small" style="margin-bottom: 10px;">Success</el-button></div> -->
             </div>
         </div>
         </div>
@@ -118,9 +146,10 @@
   <el-affix position="bottom" :offset="40">
     <div class="buts" v-if="case_id !==''">
     <el-button type="success" size="small" icon='Promotion' round @click="runCase">运行</el-button>
-    <el-button type="primary" size="small" round icon='CirclePlusFilled' @click="copyCase">复制</el-button>
+    
+    <el-button type="primary" size="small" round icon='CirclePlusFilled' @click="copyCase" v-if="buts===''">复制</el-button>
     <el-button type="primary" size="small" round icon='SuccessFilled' @click="saveCase">保存</el-button> 
-    <el-button type="danger" size="small" round icon='DeleteFilled' @click="delCase" >删除</el-button>
+    <el-button type="danger" size="small" round icon='DeleteFilled' @click="delCase" v-if="buts===''">删除</el-button>
     <el-button style="flex:1;" type="danger" size="small" round icon='View' @click="openResutl">结果</el-button>
     </div>
   </el-affix>
@@ -142,7 +171,8 @@ import ResultView from '@/components/ResultView.vue';
 var drawer=ref(false)
 var pstore=ProjectStore()
 var props=defineProps({
-    case_id:''
+    case_id:'',
+    buts:''
 })
 // 查看运行接口
 function openResutl(){
@@ -343,7 +373,47 @@ async function runCase(params) {
     }
 }  
 
-
+// 定义输出前置脚本的用例模版
+function addSetupScript(item){
+    if (item === "func") {
+			caseData.setup_script += '\n# 调用全局工具函数random_mobile随机生成一个手机号码\nmobile = global_func.random_mobile()'
+		} else if (item === "global") {
+			caseData.setup_script += '\n# 设置局部变量\ntest.save_global_variable("变量名","变量值")'
+		} else if (item === "env") {
+			caseData.setup_script += '\n# 设置局部变量\ntest.save_env_variable("变量名","变量值")'
+		} else if (item === "sql") {
+			caseData.setup_script +=
+				'\n # ----执行sql语句(需要在环境中配置数据库连接信息)----\n # db.连接名.execute_all(sql语句) \nsql = "SELECT count(*) as count FROM futureloan.member"\nres = db.aliyun.execute_all(sql)'
+		}
+}
+// 生成后置脚本
+function addTearDownCodeMod(item) {
+		if (item === "getBody") {
+			caseData.teardown_script += '\n# Demo:获取响应体(json)  \nbody = response.json()';
+			caseData.teardown_script += '\n# Demo2:获取响应体(字符串)  \nbody = response.text';
+		} else if (item === "JSextract") {
+			caseData.teardown_script +=
+				'\n# Demo:jsonpath提取response中的msg字段  \nmsg = test.json_extract(response.json(),"$..msg")';
+		} else if (item === "REextract") {
+			caseData.teardown_script += '\n# Demo:正则提取响应体中的数据  \nres = test.re_extract(response.text,"正则表达式",)';
+		} else if (item === "sql") {
+			caseData.setup_script +=
+				'\n # ----执行sql语句(需要在环境中配置数据库连接信息)----\n # db.连接名.execute_all(sql语句) \nsql = "SELECT count(*) as count FROM futureloan.member"\nres = db.aliyun.execute_all(sql)'
+		} else if (item === "global") {
+			caseData.teardown_script += '\n# 设置局部变量\ntest.save_global_variable("变量名","变量值")'
+		} else if (item === "env") {
+			caseData.teardown_script += '\n# 设置局部变量\ntest.save_env_variable("变量名","变量值")'
+		} else if (item === "func") {
+			caseData.teardown_script += '\n# 调用全局工具函数random_mobile随机生成一个手机号码\nmobile = global_func.random_mobile()'
+		} else if (item === "http") {
+			caseData.teardown_script +=
+				'\n# 断言http状态码 \n# Demo:断言http状态码是否为200  \ntest.assertion("相等",200,response.status_code)';
+		} else if (item === "eq") {
+			caseData.teardown_script += '\n# 断言相等 \ntest.assertion("相等","预期结果","实际结果")';
+		} else if (item === "contain") {
+			caseData.teardown_script += '\n# 断言包含:预期结果中的内容在实际结果中是否存在 \ntest.assertion("包含","预期结果","实际结果")';
+		}
+	}
 </script>
 
 <style scoped lang="scss">

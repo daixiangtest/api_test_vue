@@ -5,6 +5,7 @@ import router from "@/router";
 
 // 配置请求的url
 axios.defaults.baseURL='http://127.0.0.1:8000'
+// axios.defaults.baseURL='http://192.168.10.107:8000'
 // 配置默认返回请求状态为true
 axios.defaults.validateStatus=function () {
     return true; // 默认值
@@ -138,6 +139,87 @@ axios.interceptors.response.use(function (response) {
     // 删除测试用例
     delInterFaceCase(case_id){
       return axios.delete(`/api/TestInterFace/cases/${case_id}/`)
+    },
+    // 获取测试测试业务流列表
+    getScenes(pro_id){
+      return axios.get('/api/testFlow/scenes/',{
+        params:{
+          project:pro_id
+      }})
+    },
+    // 添加测试业务流
+    addScene(body){
+      return axios.post("/api/testFlow/scenes/",body)
+    },
+    // 获取业务流中的执行用例
+    getScenesCase(scene_id){
+      return axios.get("/api/testFlow/icases/",{
+        params:{
+          scene:scene_id
+        }
+      })
+    },
+    // 删除测试业务流
+    delScene(scenc_id){
+      return axios.delete(`/api/testFlow/scenes/${scenc_id}/`)
+    },
+    // 运行测试业务流
+    runScene(body){
+      return axios.post("/api/testFlow/scenes/run/",body)
+    },
+    // 更改测试业务流信息
+    updateScene(scenc_id,body){
+      return axios.patch(`/api/testFlow/scenes/${scenc_id}/`,body)
+    },
+    // 添加业务流用例
+    addSceneCase(body){
+      return axios.post("/api/testFlow/icases/",body)
+    },
+    // 删除业务流中的用例
+    delSceneCase(scenc_id){
+      return axios.delete(`/api/testFlow/icases/${scenc_id}/`)
+    },
+    // 更改业务流中用例的执行步骤
+    updateSceneCase(body){
+      return axios.patch("/api/testFlow/icases/order/",body) 
+    },
+    
+    // 获取测试任务列表
+    getTestTaskList(pro_id){
+      return axios.get("/api/testTask/tasks/",{params:{
+        project:pro_id
+      }})
+    },
+    // 创建测试任务
+    addTestTask(body){
+      return axios.post('/api/testTask/tasks/',body)
+    },
+    // 更改测试任务
+    updateTestTask(task_id){
+      return axios.patch(`/api/testTask/tasks/${task_id}/`,body)
+    },
+    // 删除测试任务
+    delTestTask(task_id){
+      return axios.delete(`/api/testTask/tasks/${task_id}/`)
+    },
+    // 获取任务的详情
+    getTestTask(task_id){
+       return axios.get(`/api/testTask/tasks/${task_id}/`)
+    },
+    // 获取测试执行记录
+    getTestRecords(params){
+      return axios.get("/api/testTask/records/",{params:params})
+    },
+    // 获取单条测试执行记录
+    getTestRecord(id){
+      return axios.get(`/api/testTask/records/${id}/`)
+    },
+    // 获取测试报告的数据信息
+    getTestReport(task_id){
+      return axios.get(`/api/testTask/report/${task_id}/`)
+    },
+    // 运行测试任务
+    runTestTask(body){
+      return axios.post("/api/testTask/tasks/run/",body)
     }
-
   }

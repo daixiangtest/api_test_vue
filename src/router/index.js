@@ -104,6 +104,16 @@ const routes = [
           iconImg: require("@/assets/icons/analysis.png")
         }
       },
+      {
+				path: '/records/report/:id',
+				name: 'report',
+				component: () => import( /* webpackChunkName: "about" */ '../views/home/testReport/reportView.vue'),
+				meta: {
+					name: "测试报告",
+          iconImg: require("@/assets/icons/file-addition.png")
+				}
+			},
+
     ]
   },
   {

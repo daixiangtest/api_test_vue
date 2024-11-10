@@ -58,7 +58,7 @@
         </div>
         <!-- 右侧盒子 -->
         <div class="card right_box">
-            <TestCase :case_id></TestCase>
+            <TestCase :case_id="case_id"></TestCase>
         </div>
     </div>
 </template>

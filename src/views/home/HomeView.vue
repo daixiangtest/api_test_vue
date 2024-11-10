@@ -34,6 +34,8 @@ import {ProjectStore} from '@/store/modoles/proStore'
     const pstore=ProjectStore()
     // 获取项目接口列表
     pstore.getInterFaces()
+    // 获取项目业务流列表
+    pstore.getScenes()
 
 </script>
 

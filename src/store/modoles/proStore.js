@@ -10,9 +10,11 @@ export const ProjectStore=defineStore('proStore',
                 // 环境列表
                 env_list:[],
                 // 选择的测试环境
-                env:null,
+                env:0,
                 // 保存接口列表
-                inetrfaces:[]
+                inetrfaces:[],
+                // 测试业务流列表
+                sceneList:[]
             }
 
         },
@@ -39,6 +41,12 @@ export const ProjectStore=defineStore('proStore',
                     this.inetrfaces=res.data
                 }else{
                     console.log(`获取项目id${this.pro.id}失败`)
+                }
+            },
+            async getScenes(){
+                const res=await api.getScenes(this.pro.id)
+                if (res.status===200){
+                    this.sceneList=res.data
                 }
             }
         },
