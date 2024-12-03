@@ -1,5 +1,6 @@
 import {defineStore} from 'pinia'
 import api from '@/api/index'
+
 export const ProjectStore=defineStore('proStore',
     {   
         // 全局数据存储
@@ -14,7 +15,9 @@ export const ProjectStore=defineStore('proStore',
                 // 保存接口列表
                 inetrfaces:[],
                 // 测试业务流列表
-                sceneList:[]
+                sceneList:[],
+                // 测试计划列表
+                taskList: []
             }
 
         },
@@ -43,10 +46,18 @@ export const ProjectStore=defineStore('proStore',
                     console.log(`获取项目id${this.pro.id}失败`)
                 }
             },
+            // 获取测试业务流列表
             async getScenes(){
                 const res=await api.getScenes(this.pro.id)
                 if (res.status===200){
                     this.sceneList=res.data
+                }
+            },
+            // 获取测试计划
+            async getTestTask(){
+                const res=await api.getTestTaskList(this.pro.id)
+                if (res.status===200){
+                    this.taskList=res.data
                 }
             }
         },

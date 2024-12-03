@@ -91,7 +91,7 @@
             </div>
             <div v-else>
                 <div class="div" style="height: 225px;">
-                    暂不支持
+                    <FromData v-model="caseData.file"></FromData>
                 </div>
             </div>
         </div>
@@ -160,6 +160,7 @@
 </template>
 
 <script setup>
+import FromData from '@/components/FormData.vue'
 import {ref,defineProps,reactive, watch} from 'vue'
 import EditorCopmponts from '@/views/home/components/EditorCopmponts.vue';
 import api from '@/api/index'

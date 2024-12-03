@@ -195,7 +195,7 @@ axios.interceptors.response.use(function (response) {
       return axios.post('/api/testTask/tasks/',body)
     },
     // 更改测试任务
-    updateTestTask(task_id){
+    updateTestTask(task_id,body){
       return axios.patch(`/api/testTask/tasks/${task_id}/`,body)
     },
     // 删除测试任务
@@ -212,7 +212,7 @@ axios.interceptors.response.use(function (response) {
     },
     // 获取单条测试执行记录
     getTestRecord(id){
-      return axios.get(`/api/testTask/records/${id}/`)
+      return axios.get(`/api/testTask/records/${id}/`)  
     },
     // 获取测试报告的数据信息
     getTestReport(task_id){
@@ -221,5 +221,54 @@ axios.interceptors.response.use(function (response) {
     // 运行测试任务
     runTestTask(body){
       return axios.post("/api/testTask/tasks/run/",body)
+    },
+    // 查询bug列表
+    getBugs(pro_id){
+      return axios.get("/api/bug/bugs/",{params:{
+        project:pro_id
+      }})
+    },
+    // 查看bug 的详细信息
+    getBugData(b_id){
+      return axios.get(`/api/bug/bugs/${b_id}/`)
+    },
+    // 创建bug
+    addBug(body){
+      return axios.post("/api/bug/bugs/",body)
+    },
+    // 更新bug
+    updateBug(b_id,body){
+      return axios.patch(`/api/bug/bugs/${b_id}/`,body)
+    },
+    // 查询定时任务列表
+    getCronJob(pro_id){
+      return axios.get("/api/crontab/cronjob/",{params:{
+        project:pro_id
+      }})
+    },
+    // 添加定时任务
+    addCronJob(body){
+      return axios.post("/api/crontab/cronjob/",body)
+    },
+    // 更改定时任务信息
+    updateCronJob(j_id,body){
+      return axios.patch(`/api/crontab/cronjob/${j_id}/`,body)
+    },
+    // 删除定时任务
+    delCronJob(j_id){
+      return axios.delete(`/api/crontab/cronjob/${j_id}/`)
+    },
+
+    // 文件上传接口
+    uploadFile:{
+      url:axios.defaults.baseURL+`/api/testPro/files/`
+    },
+    // 获取文件列表
+    getFiles(){
+      return axios.get("/api/testPro/files/")
+    },
+    // 删除文件
+    delFiles(id){
+      return axios.delete(`/api/testPro/files/${id}/`)
     }
   }

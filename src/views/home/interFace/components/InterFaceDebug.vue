@@ -62,8 +62,7 @@
             </div>
             <div v-else>
                 <div class="div" style="height: 225px;">
-                    暂不支持
-                    <EditorCopmponts v-model="caseData.setup_script"  lang="plain_text" height="225px"></EditorCopmponts>
+                    <FromData v-model="caseData.file"></FromData>
                 </div>
             </div>
         </div>
@@ -114,6 +113,7 @@
 
 
 <script setup>
+import FromData from '@/components/FormData.vue'
 import { reactive,ref } from 'vue';
 import EditorCopmponts from '../../../../views/home/components/EditorCopmponts.vue';
 import api from '@/api/index'

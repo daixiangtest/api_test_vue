@@ -1,6 +1,6 @@
 <template>
     <div class="logo">
-        <img src="@/assets/images/logo1.png">
+        <img src="@/assets/images/test.jpg">
     </div>
     <!-- 左侧菜单展示 -->
     <el-menu default-active="$route.path" class="el-menu-vertical-demo" router :collapse="us.iscollapse">
