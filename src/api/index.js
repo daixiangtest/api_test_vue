@@ -4,8 +4,8 @@ import { ElMessage } from 'element-plus'
 import router from "@/router";
 
 // 配置请求的url
-axios.defaults.baseURL='http://127.0.0.1:8000'
-// axios.defaults.baseURL='http://192.168.10.107:8000'
+// axios.defaults.baseURL='http://127.0.0.1:8000'
+axios.defaults.baseURL='http://115.120.244.181:8008'
 // 配置默认返回请求状态为true
 axios.defaults.validateStatus=function () {
     return true; // 默认值
