@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkapi_test_vue"]=self["webpackChunkapi_test_vue"]||[]).push([[718],{1241:function(t,n){n.A=(t,n)=>{const u=t.__vccOpts||t;for(const[e,c]of n)u[e]=c;return u}},8718:function(t,n,u){u.r(n),u.d(n,{default:function(){return f}});var e=u(6768);const c={class:"about"};function r(t,n){return(0,e.uX)(),(0,e.CE)("div",c," 测试环境 ")}var s=u(1241);const o={},a=(0,s.A)(o,[["render",r]]);var f=a}}]);
+//# sourceMappingURL=718.7447a0c7.js.map
